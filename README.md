@@ -23,20 +23,40 @@ Appointment Keeper is a web application built with Laravel to help users manage 
 ---
 
 ## API Endpoints
+
 - List Appointments 
-	- GET /
+	- GET /appointments
+
+- Show Appointment
+	- GET /appointments/{id}
 
 - Create Appointment
-	- POST /create
+	- POST /appointments
 
-	-Body{
-  		"name": "John Doe",
- 		 "email": "john.doe@example.com",
- 		 "phone": "1234567890",
- 		 "ucn": "1234567890",
+		- Body:
+		{
+  		"client_name": "John Doe",
  		 "date": "01-06-2025",
  		 "time": "14:30",
  		 "description": "Consultation",
  		 "notification_type": ["email", "phone"]
 		}
 
+
+
+- List Clients 
+	- GET /clients
+
+- Show Appointment
+	- GET /clients/{id}
+
+- Create Appointment
+	- POST /clients
+
+		- Body:
+		{
+  		 "name": "John Doe",
+ 		 "email": "jdoe@example.com",
+ 		 "phone": "0887642899",
+ 		 "ucn": "8809168470",
+		}

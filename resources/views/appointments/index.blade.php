@@ -3,7 +3,7 @@
         All Appointments
     </x-slot:heading>
 
-    <form method="GET" action="{{route('index')}}" class="mb-6">
+    <form method="GET" action="{{route('appointments.index')}}" class="mb-6">
         <div class="flex justify-between gap-6">
             <div class="flex flex-col">
                 <x-form-label for="date"> Date Selector</x-form-label>
@@ -20,9 +20,6 @@
     </form>
 
 
-
-
-
     <x-table>
 
         <x-table-header :headers="['Name','UCN/ЕГН','Date','Time','Description']" />
@@ -30,7 +27,8 @@
         <tbody>
 
         @foreach($appointments as $appointment)
-            <x-table-row :appointmentid="$appointment->id" :rowData="[$appointment->client->name,
+            <x-table-row :routeFor="'appointments.show'" :idFor="$appointment" :rowData="[
+                                            $appointment->client->name,
                                             $appointment->client->ucn,
                                             $appointment->date,
                                             $appointment->time,

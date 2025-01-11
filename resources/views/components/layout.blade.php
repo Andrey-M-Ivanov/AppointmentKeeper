@@ -42,8 +42,10 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <x-nav-link href="{{route('index')}}" :active="request()->is('/')">Appointments</x-nav-link>
-                            <x-nav-link href="{{route('create')}}" :active="request()->is('create')">Create Appointment</x-nav-link>
+                            <x-nav-link href="{{route('appointments.index')}}" :active="request()->is('/')">Appointments</x-nav-link>
+                            <x-nav-link href="{{route('clients.index')}}" :active="request()->is('clients')">Clients</x-nav-link>
+                            <x-nav-link href="{{route('appointments.create')}}" :active="request()->is('appointments/create')">Create New Appointment</x-nav-link>
+                            <x-nav-link href="{{route('clients.create')}}" :active="request()->is('clients/register')">Create New Client</x-nav-link>
 
                         </div>
                     </div>
@@ -55,8 +57,10 @@
         <div class="md:hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <x-nav-link href="{{route('index')}}" :active="request()->is('/')">Appointments</x-nav-link>
-                <x-nav-link href="{{route('create')}}" :active="request()->is('create')">Create Appointment</x-nav-link>
+                <x-nav-link href="{{route('appointments.index')}}" :active="request()->is('/')">Appointments</x-nav-link>
+                <x-nav-link href="{{route('clients.index')}}" :active="request()->is('clients')">Clients</x-nav-link>
+                <x-nav-link href="{{route('appointments.create')}}" :active="request()->is('appointments/create')">Create New Appointment</x-nav-link>
+                <x-nav-link href="{{route('clients.create')}}" :active="request()->is('clients/register')">Create New Client</x-nav-link>
 
             </div>
         </div>

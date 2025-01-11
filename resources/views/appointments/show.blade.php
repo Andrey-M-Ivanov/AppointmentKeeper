@@ -8,9 +8,6 @@
             <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Appointment Details</h2>
         <div class="space-y-4 mt-5">
             <p class="text-base text-gray-600"><span class="font-medium">Name:</span> {{$appointment->client->name}}</p>
-            <p class="text-base text-gray-600"><span class="font-medium">Email:</span> {{$appointment->client->email}}</p>
-            <p class="text-base text-gray-600"><span class="font-medium">Phone:</span> {{$appointment->client->phone}}</p>
-            <p class="text-base text-gray-600"><span class="font-medium">UCN/ЕГН:</span> {{$appointment->client->ucn}}</p>
         </div>
         <div class="space-y-4 mt-4">
             <p class="text-base text-gray-600"><span class="font-medium">Date:</span> {{$appointment->date}}</p>
@@ -22,10 +19,10 @@
 
         <div class="mt-2 flex justify-end space-x-4">
 
-            <x-button href="{{route('edit', $appointment)}}">Edit</x-button>
+            <x-button href="{{route('appointments.edit', $appointment)}}">Edit</x-button>
             <button class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150 dark:bg-red-800 dark:border-gray-600 dark:text-gray-100 dark:focus:border-red-700 dark:active:bg-red-700 dark:active:text-red-300" form="delete-appointment">Delete</button>
 
-            <form class="hidden" method="POST" id="delete-appointment" action="{{route('show', $appointment)}}">
+            <form class="hidden" method="POST" id="delete-appointment" action="{{route('appointments.show', $appointment)}}">
                 @csrf
                 @method("DELETE")
             </form>
@@ -49,7 +46,7 @@
             <tbody>
 
             @foreach($clientAppointments as $appointment)
-                <x-table-row :appointmentid="$appointment->id" :rowData="[$appointment->client->name,
+                <x-table-row :routeFor="'appointments.show'" :idFor="$appointment" :rowData="[$appointment->client->name,
                                                 $appointment->date,
                                                 $appointment->time,
                                                 $appointment->description,
