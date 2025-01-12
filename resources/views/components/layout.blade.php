@@ -8,11 +8,18 @@
 </head>
 <body class="h-full">
 
-@if(session('success'))
+@if(session()->has("success") || session()->has("error"))
     <div class="fixed top-0 left-0 right-0 z-50 p-4">
+        @if(session('success'))
         <div class="bg-green-500 text-white p-4 rounded-md" style="animation: fadeOut 2s ease-in-out forwards;">
             <span>{{session('success')}}</span>
         </div>
+        @endif
+            @if(session('error'))
+                <div class="bg-red-500 text-white p-4 rounded-md" style="animation: fadeOut 2s ease-in-out forwards;">
+                    <span>{{session('error')}}</span>
+                </div>
+            @endif
     </div>
 
     <style>

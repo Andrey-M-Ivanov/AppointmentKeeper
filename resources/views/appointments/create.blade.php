@@ -4,7 +4,7 @@
     </x-slot:heading>
 
 
-    <form method="POST" action="{{route('appointments.create')}}">
+    <form method="POST" action="{{route('appointments.store')}}">
         @csrf
         <div class="space-y-12 pl-20 pr-20">
 

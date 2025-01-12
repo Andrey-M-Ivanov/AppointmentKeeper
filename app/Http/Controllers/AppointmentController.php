@@ -7,11 +7,16 @@ use App\Models\Client;
 use App\Rules\ValidDateTime;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Services\NotificationService;
 
 
 
 class AppointmentController extends Controller
 {
+    protected NotificationService $notificationService;
+    public function __construct(NotificationService $notificationService){
+        $this->notificationService = $notificationService;
+    }
 
     // SHOW
     public function index(Request $request)
@@ -63,8 +68,7 @@ class AppointmentController extends Controller
             "description" => $validated['description'],
         ]);
 
-        //flash message
-        session()->flash('success', "Appointment added successfully {$newAppointment->client->name} will be informed by " . request('notification_type'));
+        $this->notificationService->sendNotification(request('notification_type'), $newAppointment);
 
         if(request()->wantsJson()) {
             return response()->json($newAppointment);
@@ -121,7 +125,7 @@ class AppointmentController extends Controller
             $appointment->update($validated);
         }
 
-        session()->flash('success', "Changes applied successfully. ". $appointment->client->name . " will be informed by " . request('notification_type'));
+        $this->notificationService->sendNotification(request("notification_type"), $appointment);
 
         return redirect()->route('appointments.show', ['appointment' => $appointment]);
     }
